@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yourcompany</groupId>
-	<version>5.0.0-SNAPSHOT</version>
+	<version>5.0.1-SNAPSHOT</version>
 	<artifactId>sax-spark-ss-custom-component</artifactId>
 	
 	<properties>
@@ -19,9 +19,9 @@
 		<dependency>
 			<groupId>com.streamanalytix</groupId>
 			<artifactId>sax-spark-ss</artifactId>
-			<version>${project.version}</version>
+			<version>5.0.0-SNAPSHOT</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/sax-spark-SS-framework-${project.version}-jar-with-dependencies.jar</systemPath>
+			<systemPath>${project.basedir}/lib/sax-spark-SS-framework-5.0.0-SNAPSHOT-jar-with-dependencies.jar</systemPath>
 		</dependency>
 
 		<dependency>

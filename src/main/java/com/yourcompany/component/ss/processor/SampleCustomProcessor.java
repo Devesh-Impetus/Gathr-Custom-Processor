@@ -1,6 +1,13 @@
 package com.yourcompany.component.ss.processor;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,6 +22,7 @@ public class SampleCustomProcessor implements CustomProcessor {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 611540615477277784L;
+    public static final String FP_SCHEMA_FILE_NAME="fingerprintingSchemaFields.properties";
 
     /** The Constant LOGGER. */
     private static final Log LOGGER = LogFactory.getLog(SampleCustomProcessor.class);
@@ -44,6 +52,20 @@ public class SampleCustomProcessor implements CustomProcessor {
     public Dataset<Row> process(Dataset<Row> datasetIn) throws Exception {
         LOGGER.error("inside process of SampleCustomProcessor version1");
         LOGGER.error("Removing duplicate input rows version1");
+        List<Row> dataset = datasetIn.collectAsList();
+        List<String> fingerprintingSchemaFields = new ArrayList<>();
+        try (InputStream propInStr = Thread.currentThread().getContextClassLoader()
+                .getResourceAsStream(FP_SCHEMA_FILE_NAME)) {
+            BufferedReader rdr = new BufferedReader(new InputStreamReader(propInStr));
+            String line;
+            while ((line = rdr.readLine()) != null) {
+                fingerprintingSchemaFields.add(line);
+            }
+            System.out.println(fingerprintingSchemaFields);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // put some custom logic here
         Dataset<Row> datasetModified = datasetIn.dropDuplicates();
         LOGGER.error("exit process of SampleCustomProcessor version1");
@@ -59,5 +81,4 @@ public class SampleCustomProcessor implements CustomProcessor {
     public void cleanup() {
         LOGGER.error("inside cleanup of SampleCustomProcessor version1");
     }
-
 }
