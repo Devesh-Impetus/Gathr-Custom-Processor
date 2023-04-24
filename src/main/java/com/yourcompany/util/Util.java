@@ -1,12 +1,15 @@
 package com.yourcompany.util;
 
+import com.google.common.primitives.Bytes;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.catalyst.expressions.GenericRow;
+import org.apache.spark.sql.types.StructType;
+
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Util {
-    static final String digits = "0123456789ABCDEF";
-
     public static String ipToLong(String ipAddress) {
         String[] ipAddressInArray = ipAddress.split("\\.");
         long result = 0;
@@ -26,6 +29,7 @@ public class Util {
         return charSeq != null && !charSeq.toString().isEmpty();
     }
 
+    static final String digits = "0123456789ABCDEF";
     static String integerToHex(int input) {
         if (input <= 0)
             return "0";
@@ -37,7 +41,6 @@ public class Util {
         }
         return hex.toString();
     }
-
     public static void main(String[] args) {
         /*StringBuilder hbaseColumnVal = new StringBuilder();
         hbaseColumnVal.append("a").append("-").append("b").append("-");
@@ -67,13 +70,12 @@ public class Util {
         rowKeyToColumnToColumnValMap.put("key", map);
 
         Object[] colToColVal = rowKeyToColumnToColumnValMap.values().toArray();
-        for (Object obj : colToColVal) {
+        for(Object obj : colToColVal) {
             System.out.println(obj);
         }
 
     }
-
-    public static Object[] create(Object... values) {
+    public static Object[] create(Object ... values) {
         System.out.println(values);
         return values;
     }
