@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 
 public class UniqueKeyGenerator {
 
+    static Logger log = LoggerFactory.getLogger(UniqueKeyGenerator.class.getName());
     private static long startIndex;
     private static long endIndex;
     private static UniqueKeyGenerator uniqueKeyGenerator;
-    static Logger log = LoggerFactory.getLogger(UniqueKeyGenerator.class.getName());
 
     private UniqueKeyGenerator() {
         UniqueKeyGenerator.startIndex = 100000;

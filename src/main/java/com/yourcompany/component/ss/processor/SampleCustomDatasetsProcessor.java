@@ -1,30 +1,33 @@
 package com.yourcompany.component.ss.processor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.spark.rdd.RDD;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-
 import com.streamanalytix.framework.api.spark.processor.CustomDatasetsProcessor;
 import com.yourcompany.component.ss.common.Constants;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructType;
 
-/** The Class SampleCustomDatasetsProcessor. */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * The Class SampleCustomDatasetsProcessor.
+ */
 public class SampleCustomDatasetsProcessor implements CustomDatasetsProcessor {
 
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 611540615477277766L;
 
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Log LOGGER = LogFactory.getLog(SampleCustomDatasetsProcessor.class);
 
     String outputDataset = null;
@@ -60,7 +63,7 @@ public class SampleCustomDatasetsProcessor implements CustomDatasetsProcessor {
         list.add("fgh");
         list.add("hij");
         List<Row> nums = new ArrayList<Row>();
-        for(String s: list) {
+        for (String s : list) {
             structType = structType.add(s, DataTypes.StringType, false);
         }
         nums.add(RowFactory.create(list.toArray()));
