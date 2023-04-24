@@ -1,31 +1,38 @@
 package com.yourcompany.component.ss.processor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.streamanalytix.framework.api.spark.processor.CustomRowProcessor;
+import com.yourcompany.component.ss.common.Constants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.catalyst.expressions.GenericRow;
-import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 
-import com.streamanalytix.framework.api.spark.processor.CustomRowProcessor;
-import com.yourcompany.component.ss.common.Constants;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 // TODO: Auto-generated Javadoc
-/** The Class SampleCustomProcessor. */
+
+/**
+ * The Class SampleCustomProcessor.
+ */
 public class SampleCustomRowProcessor implements CustomRowProcessor {
 
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 611540615477677784L;
 
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Log LOGGER = LogFactory.getLog(SampleCustomRowProcessor.class);
-    
-    /** The schema. */
+
+    /**
+     * The schema.
+     */
     StructType schema = new StructType();
 
     /*
@@ -42,7 +49,7 @@ public class SampleCustomRowProcessor implements CustomRowProcessor {
         // To get value of key 'host', say
         String host = (String) connectionConfig.get(Constants.HOST);
         LOGGER.error("inside init of SampleCustomRowProcessor version1. host" + host);
-        
+
         if (conf.containsKey(Constants.SCHEMA)) {
             schema = (StructType) conf.get(Constants.SCHEMA);
         }

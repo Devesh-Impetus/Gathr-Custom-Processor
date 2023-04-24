@@ -5,14 +5,13 @@
 
 package com.yourcompany.component.ss.emitter;
 
-import java.util.Map;
-
+import com.streamanalytix.framework.api.spark.emitter.CustomSSEmitter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 
-import com.streamanalytix.framework.api.spark.emitter.CustomSSEmitter;
+import java.util.Map;
 
 public class SampleCustomEmitter implements CustomSSEmitter {
 

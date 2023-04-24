@@ -1,12 +1,14 @@
 /*******************************************************************************
-* Copyright StreamAnalytix and Impetus Technologies.
-* All rights reserved
-******************************************************************************/
+ * Copyright StreamAnalytix and Impetus Technologies.
+ * All rights reserved
+ ******************************************************************************/
 package com.yourcompany.custom.ss.partitioner;
 
 import com.streamanalytix.framework.api.spark.partitioner.SAXKafkaPartitioner;
 
-/** The Class SAXKafkaPatitioner. */
+/**
+ * The Class SAXKafkaPatitioner.
+ */
 public class SampleKafkaPartitioner implements SAXKafkaPartitioner {
 
     /*
@@ -18,11 +20,12 @@ public class SampleKafkaPartitioner implements SAXKafkaPartitioner {
 
     }
 
-    /** Partition.
+    /**
+     * Partition.
      *
-     * @param data
-     *            the data byte array
-     * @return the int */
+     * @param data the data byte array
+     * @return the int
+     */
     @Override
     public int partition(byte[] data) {
 

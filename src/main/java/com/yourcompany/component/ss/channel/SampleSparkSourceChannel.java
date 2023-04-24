@@ -1,26 +1,35 @@
 package com.yourcompany.component.ss.channel;
 
-import java.util.Map;
-
+import com.streamanalytix.framework.api.spark.channel.AbstractChannel;
+import com.yourcompany.component.ss.common.Constants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-import com.streamanalytix.framework.api.spark.channel.AbstractChannel;
-import com.yourcompany.component.ss.common.Constants;
+import java.util.Map;
 
-/** The Class SampleSparkSourceChannel. */
+/**
+ * The Class SampleSparkSourceChannel.
+ */
 public class SampleSparkSourceChannel extends AbstractChannel {
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = -1271354425951397508L;
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Log LOGGER = LogFactory.getLog(SampleSparkSourceChannel.class);
 
-    /** The host name. */
+    /**
+     * The host name.
+     */
     private String hostName;
-    /** The port. */
+    /**
+     * The port.
+     */
     private int port;
 
     /*

@@ -4,6 +4,11 @@
  ******************************************************************************/
 package com.yourcompany.component.ss.channel;
 
+import com.streamanalytix.framework.api.spark.channel.source.BaseSource;
+import com.yourcompany.component.ss.common.Constants;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.InputStreamReader;
@@ -15,31 +20,39 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.streamanalytix.framework.api.spark.channel.source.BaseSource;
-import com.yourcompany.component.ss.common.Constants;
-
-/** The Class SampleCustomChannel. */
+/**
+ * The Class SampleCustomChannel.
+ */
 public class SampleCustomChannel extends BaseSource {
 
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 455062295979078615L;
 
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Log LOGGER = LogFactory.getLog(SampleCustomChannel.class);
 
-    /** The Constant INIT_COMP_ERROR. */
+    /**
+     * The Constant INIT_COMP_ERROR.
+     */
     private static final String INIT_COMP_ERROR = "Error in initializing input components";
 
-    /** The socket. */
+    /**
+     * The socket.
+     */
     private transient Socket socket;
 
-    /** The reciever. */
+    /**
+     * The reciever.
+     */
     private transient Thread reciever;
 
-    /** The data list. */
+    /**
+     * The data list.
+     */
     private BlockingQueue<String> dataList;
 
     /*
@@ -65,7 +78,9 @@ public class SampleCustomChannel extends BaseSource {
         }
     }
 
-    /** Async consume. */
+    /**
+     * Async consume.
+     */
     private void asyncConsume() {
         try {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -119,10 +134,11 @@ public class SampleCustomChannel extends BaseSource {
         close(socket);
     }
 
-    /** Close.
+    /**
+     * Close.
      *
-     * @param closeable
-     *            the closeable */
+     * @param closeable the closeable
+     */
     private void close(Closeable closeable) {
         LOGGER.info("In closing input components");
         if (closeable != null) {

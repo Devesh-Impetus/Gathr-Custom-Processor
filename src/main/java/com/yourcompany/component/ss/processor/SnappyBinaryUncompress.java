@@ -1,9 +1,6 @@
 package com.yourcompany.component.ss.processor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.streamanalytix.framework.api.spark.processor.CustomRowProcessor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.spark.sql.Row;
@@ -13,18 +10,29 @@ import org.apache.spark.sql.types.Metadata;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 import org.xerial.snappy.Snappy;
-import com.streamanalytix.framework.api.spark.processor.CustomRowProcessor;
 
-/** The Class SnappyUncompress. */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * The Class SnappyUncompress.
+ */
 public class SnappyBinaryUncompress implements CustomRowProcessor {
 
-    /** The Constant serialVersionUID. */
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 611541615477677284L;
 
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Log LOGGER = LogFactory.getLog(SampleCustomRowProcessor.class);
-    
-    /** The schema. */
+
+    /**
+     * The schema.
+     */
     StructType schema = new StructType();
 
     /*
@@ -43,21 +51,21 @@ public class SnappyBinaryUncompress implements CustomRowProcessor {
      */
     @Override
     public Row process(Row row) throws Exception {
-        
+
         List<Object> values = new ArrayList<Object>();
         StructField[] fields = row.schema().fields();
         String value = null;
         for (int itr = 0; itr < fields.length; itr++) {
             values.add(row.get(itr));
-            if(fields[itr].dataType().sameType(DataTypes.BinaryType)){
+            if (fields[itr].dataType().sameType(DataTypes.BinaryType)) {
                 byte[] byteArray = (byte[]) row.get(itr);
                 byteArray = Snappy.uncompress(byteArray);
                 value = new String(byteArray, "UTF-8");
                 row.schema().add("decoded_binary_data", DataTypes.StringType, Boolean.TRUE, Metadata.empty());
             }
         }
-        if(value!=null && !value.isEmpty()){
-            LOGGER.debug("snappy result "+value);
+        if (value != null && !value.isEmpty()) {
+            LOGGER.debug("snappy result " + value);
             values.add(value);
         }
         return new GenericRow(values.toArray());
