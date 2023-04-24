@@ -1,4 +1,4 @@
-package com.yourcompany.util;
+package com.yourcompany.component.ss.emitter.util;
 
 import java.io.Serializable;
 import java.math.BigInteger;

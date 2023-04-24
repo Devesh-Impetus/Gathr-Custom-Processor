@@ -5,27 +5,28 @@
 
 package com.yourcompany.component.ss.emitter;
 
+import com.streamanalytix.framework.api.spark.emitter.CustomForeachEmitter;
+import com.yourcompany.component.ss.common.Constants;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.spark.sql.Row;
+import scala.collection.JavaConverters;
+import scala.collection.Seq;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import org.apache.spark.sql.Row;
-
-import com.streamanalytix.framework.api.spark.emitter.CustomForeachEmitter;
-import com.yourcompany.component.ss.common.Constants;
-
-import scala.collection.JavaConverters;
-import scala.collection.Seq;
-
-/** The Class SampleCustomForeachEmitter. */
+/**
+ * The Class SampleCustomForeachEmitter.
+ */
 public class SampleCustomForeachEmitter implements CustomForeachEmitter {
-	
-	private static final Log LOGGER = LogFactory.getLog(SampleCustomForeachEmitter.class);
 
-    /** The Constant serialVersionUID. */
+    private static final Log LOGGER = LogFactory.getLog(SampleCustomForeachEmitter.class);
+
+    /**
+     * The Constant serialVersionUID.
+     */
     private static final long serialVersionUID = 3627163059367911082L;
 
     /*
@@ -35,7 +36,7 @@ public class SampleCustomForeachEmitter implements CustomForeachEmitter {
     @SuppressWarnings("unchecked")
     @Override
     public void init(Map<String, Object> conf) {
-    	LOGGER.info("inside init of SampleCustomForeachEmitter");
+        LOGGER.info("inside init of SampleCustomForeachEmitter");
 
         // To get key value pairs if provided in extra configurations at component level, use connnectionConfig key
         Map<String, Object> connectionConfig = (Map<String, Object>) conf.get(Constants.CONNECTION_CONFIG);
@@ -49,7 +50,7 @@ public class SampleCustomForeachEmitter implements CustomForeachEmitter {
      */
     @Override
     public boolean open(long arg0, long arg1) {
-    	LOGGER.info("inside open of SampleCustomForeachEmitter.");
+        LOGGER.info("inside open of SampleCustomForeachEmitter.");
         return true;
     }
 
@@ -59,7 +60,7 @@ public class SampleCustomForeachEmitter implements CustomForeachEmitter {
      */
     @Override
     public void process(Row row) {
-    	LOGGER.info("inside process of SampleCustomForeachEmitter.");
+        LOGGER.info("inside process of SampleCustomForeachEmitter.");
         List<String> str = Arrays.asList(row.schema().fieldNames());
         Map<String, Object> dataMap = JavaConverters.mapAsJavaMapConverter(row.getValuesMap(getSeqString(str))).asJava();
         LOGGER.info(dataMap);
@@ -71,14 +72,15 @@ public class SampleCustomForeachEmitter implements CustomForeachEmitter {
      */
     @Override
     public void close(Throwable arg0) {
-    	LOGGER.info("inside close of SampleCustomForeachEmitter.");
+        LOGGER.info("inside close of SampleCustomForeachEmitter.");
     }
 
-    /** Get Seq from list.
-     * 
-     * @param list
-     *            the list
-     * @return the seq */
+    /**
+     * Get Seq from list.
+     *
+     * @param list the list
+     * @return the seq
+     */
     private Seq<String> getSeqString(List<String> list) {
         return JavaConverters.asScalaBufferConverter(list).asScala().toSeq();
     }
@@ -89,7 +91,7 @@ public class SampleCustomForeachEmitter implements CustomForeachEmitter {
      */
     @Override
     public void cleanup() {
-    	LOGGER.info("inside cleanup of SampleCustomForeachEmitter.");
+        LOGGER.info("inside cleanup of SampleCustomForeachEmitter.");
     }
 
 }
