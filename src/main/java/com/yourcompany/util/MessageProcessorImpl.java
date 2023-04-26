@@ -10,8 +10,14 @@ public class MessageProcessorImpl implements MessageProcessor{
     public MessageProcessor getMessageProcessor() {
         return messageProcessor;
     }
+    
     @Override
     public Map<String, String> processMessages(List<String> listOfMessageString) {
         return messageProcessor.processMessages(listOfMessageString);
     }
+    
+	@Override
+	public Map<String, String> processMessagesForFPIngress(List<String> listOfMessageString) {
+        return messageProcessor.processMessages(listOfMessageString);
+	}
 }

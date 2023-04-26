@@ -16,7 +16,7 @@ import org.apache.spark.sql.types.StructType;
 
 import java.util.*;
 
-public class FPAAAIngress implements CustomProcessor {
+public class FPIngress implements CustomProcessor {
     /**
      * The Constant serialVersionUID.
      */
@@ -25,11 +25,11 @@ public class FPAAAIngress implements CustomProcessor {
     /**
      * The Constant LOGGER.
      */
-    private static final Log LOGGER = LogFactory.getLog(FPAAAIngress.class);
+    private static final Log LOGGER = LogFactory.getLog(FPIngress.class);
     public static final String MESSAGE_SEPARATOR = "143";
     private final char messageSeparator;
 
-    public FPAAAIngress() {
+    public FPIngress() {
         messageSeparator = (char) Integer.parseInt(MESSAGE_SEPARATOR);
     }
 
@@ -40,13 +40,13 @@ public class FPAAAIngress implements CustomProcessor {
     @SuppressWarnings("unchecked")
     @Override
     public void init(Map<String, Object> conf) {
-        LOGGER.error("inside init of FPAAAIngress");
+        LOGGER.error("inside init of FPIngress");
 
         // To get key value pairs if provided in extra configurations at component level, use connnectionConfig key
         Map<String, Object> connectionConfig = (Map<String, Object>) conf.get(Constants.CONNECTION_CONFIG);
         // To get value of key 'host', say
         String host = (String) connectionConfig.get(Constants.HOST);
-        LOGGER.error("inside init of FPAAAIngress host" + host);
+        LOGGER.error("inside init of FPIngress host" + host);
 
     }
 
@@ -73,7 +73,7 @@ public class FPAAAIngress implements CustomProcessor {
      */
 /*    @Override
     public List<Row> process(List<Row> rows) throws Exception {
-        LOGGER.error("inside process of FPAAAIngress");
+        LOGGER.error("inside process of FPIngress");
         getMessages(rows);
         List<Row> finalList = new ArrayList<Row>();
         List<Row> nums = new ArrayList<>();

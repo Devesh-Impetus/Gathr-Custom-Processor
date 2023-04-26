@@ -40,4 +40,7 @@ public interface Constants {
     public static final String SNAPCHAT_ID = "736";
     public static final String TELEGRAM_ID = "734";
     public static final String TIKTOK_ID = "838";
+    public static final String CONFIGURE_TIME = "86400";
+    public static final String NO_OF_SALTS = "12";
+
 }

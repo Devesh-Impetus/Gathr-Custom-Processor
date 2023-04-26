@@ -5,4 +5,6 @@ import java.util.Map;
 
 public interface MessageProcessor {
     public Map<String, String> processMessages(List<String> listOfMessageString);
+    
+    public Map<String, String> processMessagesForFPIngress(List<String> listOfMessageString);
 }
